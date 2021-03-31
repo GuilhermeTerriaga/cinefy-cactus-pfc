@@ -5,7 +5,7 @@ import Arquivo from '../app/models/Arquivo';
 
 import databaseConfig from '../config/database';
 
-const models = [Usuario, Arquivo];
+const models = [Usuario, Arquivo, Resenha];
 
 class Database {
   constructor() {
