@@ -1,7 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
 class Resenha extends Model {
-  static init(Sequelize) {
+  static init(sequelize) {
     super.init(
       {
         titulo: Sequelize.STRING,
@@ -9,7 +9,7 @@ class Resenha extends Model {
         nota: Sequelize.INTEGER,
       },
       {
-        Sequelize,
+        sequelize,
       }
     );
     return this;
