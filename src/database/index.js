@@ -2,6 +2,7 @@ import Sequelize from 'sequelize';
 
 import Usuario from '../app/models/Usuario';
 import Arquivo from '../app/models/Arquivo';
+import Resenha from '../app/models/Resenha';
 
 import databaseConfig from '../config/database';
 

@@ -31,6 +31,8 @@ routes.put('/users', UserController.update);
 
 routes.get('/users', UserController.index);
 
+routes.get('/users/show', UserController.show);
+
 routes.post('/files', upload.single('arquivo'), FileController.store);
 
 module.exports = routes;

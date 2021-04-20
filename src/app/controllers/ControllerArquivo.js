@@ -1,6 +1,6 @@
 import Arquivo from '../models/Arquivo';
 
-class ControllerArquivos {
+class ControllerArquivo {
   async store(req, res) {
     const { nomeoriginal: nome, nomearquivo: caminho } = req.file;
 
@@ -12,4 +12,4 @@ class ControllerArquivos {
   }
 }
 
-export default ControllerArquivos();
+export default ControllerArquivo();
