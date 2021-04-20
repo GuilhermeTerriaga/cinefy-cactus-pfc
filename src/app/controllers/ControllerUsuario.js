@@ -78,6 +78,23 @@ class UserController {
     });
     return res.json(usuario);
   }
+
+  async show(req, res) {
+    const usuario = await Usuario.findByPk(req.usuarioId, {
+      attributes: ['id', 'apelido', 'email', 'avatar_id'],
+      include: [
+        {
+          model: Arquivo,
+          as: 'avatar',
+          attributes: ['nome', 'caminho', 'url'],
+        },
+      ],
+    });
+    if (usuario === null) {
+      return res.status(400).json({ erro: 'Usuário não existente' });
+    }
+    return res.json(usuario);
+  }
 }
 
 export default new UserController();
