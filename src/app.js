@@ -8,10 +8,10 @@ class App {
   constructor() {
     // cria o servidor
     this.server = express();
-    // confugura as rotas
-    this.routes();
     // sobe os middlewares
     this.middlewares();
+    // confugura as rotas
+    this.routes();
   }
 
   middlewares() {

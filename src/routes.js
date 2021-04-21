@@ -5,10 +5,10 @@ import multerConfig from './config/multer';
 
 // import das controladoras
 
-import UserController from './app/controllers/ControllerUsuario';
-import SessionController from './app/controllers/ControllerSessao';
-import FileController from './app/controllers/ControllerArquivos';
-import ReviewController from './app/controllers/ControllerResenha';
+import ControllerUsuario from './app/controllers/ControllerUsuario';
+// import SessionController from './app/controllers/ControllerSessao';
+import ControllerArquivo from './app/controllers/ControllerArquivo';
+// import ReviewController from './app/controllers/ControllerResenha';
 
 // import do middleware
 
@@ -20,19 +20,19 @@ const upload = multer(multerConfig);
 
 // rotas que não necessitam de autenticação
 
-routes.post('/users', UserController.store);
-routes.post('/sessions', SessionController.store);
-routes.post('/review', ReviewController.store);
+routes.post('/users', ControllerUsuario.store);
+// routes.post('/sessions', SessionController.store);
+// routes.post('/review', ReviewController.store);
 
 // a partir do use(autMiddleware) necessitará
 routes.use(autMiddleware);
 
-routes.put('/users', UserController.update);
+routes.put('/users', ControllerUsuario.update);
 
-routes.get('/users', UserController.index);
+routes.get('/users', ControllerUsuario.index);
 
-routes.get('/users/show', UserController.show);
+routes.get('/users/show', ControllerUsuario.show);
 
-routes.post('/files', upload.single('arquivo'), FileController.store);
+routes.post('/files', upload.single('arquivo'), ControllerArquivo.store);
 
 module.exports = routes;

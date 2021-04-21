@@ -13,7 +13,7 @@ class Listas extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Usuario, { foreignKey: 'usuario_id' });
+    this.belongsTo(models.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
   }
 }
 

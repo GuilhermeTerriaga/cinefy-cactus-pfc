@@ -1,5 +1,16 @@
+import multer from 'multer';
+import crypto from 'crypto';
+import { extname, resolve } from 'path';
+
 export default {
-  secret:
-    'sfdzhwjghjsoiejdpahsdasuaygsoudha@#!@$%$%RRDJFADFA.tKJCp9wEAOGMOEex.Mh6PPZ5g57R.C1KyteKXRc5a',
-  expiresIn: '7d',
+  storage: multer.diskStorage({
+    destination: resolve(__dirname, '..', '..', 'tmp', 'uploads'),
+    filename: (req, arquivo, cb) => {
+      crypto.randomBytes(16, (error, res) => {
+        if (error) return cb(error);
+
+        return cb(null, res.toString('hex') + extname(arquivo.originalname));
+      });
+    },
+  }),
 };

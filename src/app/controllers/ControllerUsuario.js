@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 import Usuario from '../models/Usuario';
-// import Arquivo from '../models/Arquivo';
+import Arquivo from '../models/Arquivo';
 
-class UserController {
+class ControllerUsuario {
   async store(req, res) {
     const schema = Yup.object().shape({
       apelido: Yup.string().required(),
@@ -97,4 +97,4 @@ class UserController {
   }
 }
 
-export default new UserController();
+export default new ControllerUsuario();

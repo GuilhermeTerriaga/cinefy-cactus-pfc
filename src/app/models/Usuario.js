@@ -22,12 +22,12 @@ class Usuario extends Model {
     return this;
   }
 
-  verificarSenha(senha) {
-    return bcrypt.compare(senha, this.hash_senha);
-  }
-
   static associate(models) {
     this.belongsTo(models.Arquivo, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
+  verificarSenha(senha) {
+    return bcrypt.compare(senha, this.hash_senha);
   }
 }
 

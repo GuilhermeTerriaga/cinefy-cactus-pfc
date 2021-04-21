@@ -12,4 +12,4 @@ class ControllerArquivo {
   }
 }
 
-export default ControllerArquivo();
+export default new ControllerArquivo();
