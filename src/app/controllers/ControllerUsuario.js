@@ -53,7 +53,7 @@ class ControllerUsuario {
         return res.status(400).json({ erro: 'Usuario já existente' });
       }
     }
-    if (senhaAntiga && (await usuario.verificarSenha(senhaAntiga))) {
+    if (senhaAntiga && !(await usuario.verificarSenha(senhaAntiga))) {
       return res.status(401).json({ erro: 'Senhas não batem' });
     }
 
@@ -76,6 +76,33 @@ class ControllerUsuario {
         },
       ],
     });
+    return res.json(usuario);
+  }
+
+  async search(req, res) {
+    const schema = Yup.object().shape({
+      apelido: Yup.string().required(),
+    });
+    if (!(await schema.isValid(req.body))) {
+      return res
+        .status(400)
+        .json({ error: 'Erro na validação dos dados enviados' });
+    }
+    const { apelido } = req.body;
+    const usuario = await Usuario.findOne({
+      where: { apelido },
+      attributes: ['id', 'apelido', 'email', 'avatar_id'],
+      include: [
+        {
+          model: Arquivo,
+          as: 'avatar',
+          attributes: ['nome', 'caminho', 'url'],
+        },
+      ],
+    });
+    if (usuario === null) {
+      return res.status(400).json({ erro: 'Usuário não existente' });
+    }
     return res.json(usuario);
   }
 

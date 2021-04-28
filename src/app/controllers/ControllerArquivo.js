@@ -2,7 +2,7 @@ import Arquivo from '../models/Arquivo';
 
 class ControllerArquivo {
   async store(req, res) {
-    const { nomeoriginal: nome, nomearquivo: caminho } = req.file;
+    const { originalname: nome, filename: caminho } = req.file;
 
     const arquivo = await Arquivo.create({
       nome,

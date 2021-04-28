@@ -6,7 +6,7 @@ import multerConfig from './config/multer';
 // import das controladoras
 
 import ControllerUsuario from './app/controllers/ControllerUsuario';
-// import SessionController from './app/controllers/ControllerSessao';
+import SessionController from './app/controllers/ControllerSessao';
 import ControllerArquivo from './app/controllers/ControllerArquivo';
 // import ReviewController from './app/controllers/ControllerResenha';
 
@@ -21,7 +21,7 @@ const upload = multer(multerConfig);
 // rotas que não necessitam de autenticação
 
 routes.post('/users', ControllerUsuario.store);
-// routes.post('/sessions', SessionController.store);
+routes.post('/sessions', SessionController.store);
 // routes.post('/review', ReviewController.store);
 
 // a partir do use(autMiddleware) necessitará
@@ -32,6 +32,8 @@ routes.put('/users', ControllerUsuario.update);
 routes.get('/users', ControllerUsuario.index);
 
 routes.get('/users/show', ControllerUsuario.show);
+
+routes.get('/users/search', ControllerUsuario.search);
 
 routes.post('/files', upload.single('arquivo'), ControllerArquivo.store);
 
