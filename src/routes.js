@@ -20,21 +20,23 @@ const upload = multer(multerConfig);
 
 // rotas que não necessitam de autenticação
 
-routes.post('/users', ControllerUsuario.store);
-routes.post('/sessions', SessionController.store);
+routes.post('/users', ControllerUsuario.store); // se cadastrar
+routes.post('/sessions', SessionController.store); // Logar
 // routes.post('/review', ReviewController.store);
 
 // a partir do use(autMiddleware) necessitará
 routes.use(autMiddleware);
 
-routes.put('/users', ControllerUsuario.update);
+routes.put('/users', ControllerUsuario.update); // atualizar os proprios dados
 
-routes.get('/users', ControllerUsuario.index);
+routes.get('/users', ControllerUsuario.index); // mostra todos os usuários do sistema
 
-routes.get('/users/show', ControllerUsuario.show);
+routes.get('/users/show', ControllerUsuario.show); // visualiza apenas ele mesmo
 
-routes.get('/users/search', ControllerUsuario.search);
+routes.get('/users/search', ControllerUsuario.search); // visualiza apenas um, o que ele buscar
 
 routes.post('/files', upload.single('arquivo'), ControllerArquivo.store);
+
+// delete
 
 module.exports = routes;
