@@ -23,13 +23,14 @@ const upload = multer(multerConfig);
 routes.post('/users', ControllerUsuario.store); // se cadastrar
 routes.post('/sessions', SessionController.store); // Logar
 // routes.post('/review', ReviewController.store);
+routes.get('/users', ControllerUsuario.index); // mostra todos os usuários do sistema
 
 // a partir do use(autMiddleware) necessitará
 routes.use(autMiddleware);
 
 routes.put('/users', ControllerUsuario.update); // atualizar os proprios dados
 
-routes.get('/users', ControllerUsuario.index); // mostra todos os usuários do sistema
+
 
 routes.get('/users/show', ControllerUsuario.show); // visualiza apenas ele mesmo
 
