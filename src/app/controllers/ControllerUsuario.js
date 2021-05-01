@@ -34,12 +34,8 @@ class ControllerUsuario {
       senhaAntiga: Yup.string().min(8),
       senha: Yup.string()
         .min(6)
-        .when('senhaAntiga', (senhaAntiga, campo) =>
-          senhaAntiga ? campo.required() : campo
-        ),
-      confirmacaoSenha: Yup.string().when('senha', (senha, campo) =>
-        senha ? campo.required().oneOf([Yup.ref('senha')]) : campo
-      ),
+        .when('senhaAntiga', (senhaAntiga, campo) => (senhaAntiga ? campo.required() : campo)),
+      confirmacaoSenha: Yup.string().when('senha', (senha, campo) => (senha ? campo.required().oneOf([Yup.ref('senha')]) : campo)),
     });
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ erro: 'Erro de validação' });
