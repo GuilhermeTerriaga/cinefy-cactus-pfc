@@ -8,7 +8,7 @@ import multerConfig from './config/multer';
 import ControllerUsuario from './app/controllers/ControllerUsuario';
 import SessionController from './app/controllers/ControllerSessao';
 import ControllerArquivo from './app/controllers/ControllerArquivo';
-// import ReviewController from './app/controllers/ControllerResenha';
+import ControllerResenha from './app/controllers/ControllerResenha';
 
 // import do middleware
 
@@ -22,7 +22,7 @@ const upload = multer(multerConfig);
 
 routes.post('/users', ControllerUsuario.store); // se cadastrar
 routes.post('/sessions', SessionController.store); // Logar
-// routes.post('/review', ReviewController.store);
+routes.post('/review', ControllerResenha.store); // Guarda Resenha
 routes.get('/users', ControllerUsuario.index); // mostra todos os usuários do sistema
 
 // a partir do use(autMiddleware) necessitará
