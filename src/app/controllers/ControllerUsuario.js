@@ -57,11 +57,21 @@ class ControllerUsuario {
       return res.status(401).json({ erro: 'Senhas não batem' });
     }
 
-    const { id, apelido } = await usuario.update(req.body);
+    await usuario.update(req.body);
+    const { id, apelido, avatar } = await Usuario.findByPk(req.usuarioId, {
+      include: [
+        {
+          model: Arquivo,
+          as: 'avatar',
+          attributes: ['nome', 'caminho', 'url'],
+        },
+      ],
+    });
     return res.json({
       id,
       apelido,
       email,
+      avatar,
     });
   }
 
