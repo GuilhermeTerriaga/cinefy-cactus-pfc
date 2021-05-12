@@ -5,7 +5,8 @@ class Resenha extends Model {
     super.init(
       {
         titulo: Sequelize.STRING,
-        corpo: Sequelize.TEXT,
+        corpo: Sequelize.STRING(550),
+        veredito: Sequelize.BOOLEAN,
         nota: Sequelize.INTEGER,
       },
       {
@@ -13,6 +14,10 @@ class Resenha extends Model {
       }
     );
     return this;
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
   }
 }
 export default Resenha;
