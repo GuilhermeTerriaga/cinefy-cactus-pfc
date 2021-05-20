@@ -10,7 +10,7 @@ class ControllerUsuario {
       senha: Yup.string().required().min(8),
     });
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ erro: 'Erro de validação' });
+      return res.status(400).json({ erro: 'Erro na validação dos dados' });
     }
     const usuarioExistente = await Usuario.findOne({
       where: { email: req.body.email },
@@ -42,7 +42,7 @@ class ControllerUsuario {
       ),
     });
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ erro: 'Erro de validação' });
+      return res.status(400).json({ erro: 'Erro na validação dos dados' });
     }
     const { email, senhaAntiga } = req.body;
 
@@ -94,9 +94,7 @@ class ControllerUsuario {
       apelido: Yup.string().required(),
     });
     if (!(await schema.isValid(req.body))) {
-      return res
-        .status(400)
-        .json({ error: 'Erro na validação dos dados enviados' });
+      return res.status(400).json({ error: 'Erro na validação dos dados' });
     }
     const { apelido } = req.body;
     const usuario = await Usuario.findOne({
