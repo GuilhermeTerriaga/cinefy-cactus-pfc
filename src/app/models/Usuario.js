@@ -27,7 +27,9 @@ class Usuario extends Model {
   // associação entre a foto e o usuário
   static associate(models) {
     this.belongsTo(models.Arquivo, { foreignKey: 'avatar_id', as: 'avatar' });
+    // this.belongsTo(models.Listas, { foreignKey: 'lista_id', as: 'lista' });
   }
+  // adcionar a associação entre usuario e genero cinematografico
 
   // verifica se a password digitada bate com o hash
   verificarSenha(senha) {

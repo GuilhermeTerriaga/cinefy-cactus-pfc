@@ -10,7 +10,7 @@ class ControllerUsuario {
       senha: Yup.string().required().min(8),
     });
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ erro: 'Erro de validação' });
+      return res.status(400).json({ erro: 'Erro na validação dos dados' });
     }
     const usuarioExistente = await Usuario.findOne({
       where: { email: req.body.email },
@@ -42,7 +42,7 @@ class ControllerUsuario {
       ),
     });
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ erro: 'Erro de validação' });
+      return res.status(400).json({ erro: 'Erro na validação dos dados' });
     }
     const { email, senhaAntiga } = req.body;
 
@@ -57,11 +57,21 @@ class ControllerUsuario {
       return res.status(401).json({ erro: 'Senhas não batem' });
     }
 
-    const { id, apelido } = await usuario.update(req.body);
+    await usuario.update(req.body);
+    const { id, apelido, avatar } = await Usuario.findByPk(req.usuarioId, {
+      include: [
+        {
+          model: Arquivo,
+          as: 'avatar',
+          attributes: ['nome', 'caminho', 'url'],
+        },
+      ],
+    });
     return res.json({
       id,
       apelido,
       email,
+      avatar,
     });
   }
 
@@ -84,9 +94,7 @@ class ControllerUsuario {
       apelido: Yup.string().required(),
     });
     if (!(await schema.isValid(req.body))) {
-      return res
-        .status(400)
-        .json({ error: 'Erro na validação dos dados enviados' });
+      return res.status(400).json({ error: 'Erro na validação dos dados' });
     }
     const { apelido } = req.body;
     const usuario = await Usuario.findOne({
