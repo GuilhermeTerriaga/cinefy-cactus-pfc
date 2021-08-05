@@ -1,3 +1,3 @@
 # Repo de códigos do cinefy, vulgo cactus repo
-Se for commitar na master, antes faça um git pull ;)
+Por favor, siga as regras de push
 
